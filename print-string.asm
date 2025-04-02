@@ -1,0 +1,39 @@
+MOV BL, 70
+ADD CL, 70
+ADD DL, C0
+
+CALL 10
+
+HALT
+
+ORG 10
+PUSH AL
+PUSH BL
+PUSHF
+
+Rep:
+	IN 00
+	CMP AL, 0D
+	JZ Imprime
+	MOV[BL], AL
+	INC BL
+	JMP Rep
+
+Imprime:
+	MOV BL, [CL]
+	MOV [DL], BL
+	INC CL
+	INC DL
+	CMP BL, 00
+	JZ Stop
+	JMP Imprime
+
+Stop:
+	MOV AL, 0
+	MOV [BL], AL
+	POPF
+	POP BL
+	POP AL
+	RET
+
+END
