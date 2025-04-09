@@ -1,0 +1,53 @@
+IN 00
+MOV [70], AL
+IN 00
+MOV [71], AL
+
+CheckOrder:
+MOV AL, [70]
+MOV BL, [71]
+CMP BL, AL
+JS Correto
+JNS Invertido
+
+Correto:
+MOV AL, 43
+MOV [C0], AL
+MOV AL, 6F
+MOV [C1], AL
+MOV AL, 72
+MOV [C2], AL
+MOV AL, 72
+MOV [C3], AL
+MOV AL, 65
+MOV [C4], AL
+MOV AL, 74
+MOV [C5], AL
+MOV AL, 6F
+MOV [C6], AL
+JMP Fim
+
+Invertido:
+MOV AL, 49
+MOV [C0], AL
+MOV AL, 4E
+MOV [C1], AL
+MOV AL, 56
+MOV [C2], AL
+MOV AL, 45
+MOV [C3], AL
+MOV AL, 52
+MOV [C4], AL
+MOV AL, 54
+MOV [C5], AL
+MOV AL, 49
+MOV [C6], AL
+MOV AL, 44
+MOV [C7], AL
+MOV AL, 4F
+MOV [C8], AL
+JMP Fim
+
+Fim:
+RET
+END
