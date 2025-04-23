@@ -1,0 +1,78 @@
+JMP Start ; Salta a tabela
+
+DB 4F ; Inicio da tabela
+DB 4F
+DB 4F
+DB 4F
+DB 4F
+DB 4F
+DB 4F
+DB 4F
+DB 4F
+DB 4F
+DB 1F
+DB 1F
+DB 1F
+DB 8F
+DB 8F
+DB 8F
+DB 8F
+DB 1F
+DB 1F
+DB 4F 
+DB 4F
+DB 4F
+DB 4F
+DB 1F
+DB 1F
+DB 1F
+DB 8F
+DB 8F
+DB 8F
+DB 8F
+DB 8F
+DB 8F
+DB 8F
+DB 2F
+DB 2F
+DB 2F
+DB 2F
+DB 2F  
+DB 8F
+DB 8F
+DB 8F
+DB 1F
+DB 1F
+DB 1F
+DB 1F
+DB 1F
+DB 1F
+DB 1F
+DB 4F 
+DB 4F
+DB 4F
+DB 4F
+DB 4F 
+DB 4F
+DB 4F
+DB 4F
+DB 4F
+DB 4F
+DB 4F
+DB 00  ; Fim da tabela
+
+Start:
+
+MOV AL,FF ; Reset do game
+OUT 04 ; Utiliza a porta 04
+MOV BL,02 ; Seta BL como ponteiro
+Rep:
+MOV AL,[BL]
+OUT 04
+CMP AL, 0  ; Verifica o fim
+
+JZ Start
+
+INC BL
+JMP Rep
+END
