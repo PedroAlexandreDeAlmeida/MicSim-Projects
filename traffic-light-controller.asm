@@ -1,42 +1,48 @@
-const int LDR = A0;
-const int ledPin1 = 7;
-const int ledPin2 = 6;
-const int ledPin3 = 5;
+Start:  
 
-int valor_LDR = 0;
+MOV AL,30
+CALL 30
 
-void setup() {
-    pinMode(ledPin1, OUTPUT);
-    Serial.begin(9600);
-    pinMode(ledPin2, OUTPUT);
-    Serial.begin(9600);
-    pinMode(ledPin3, OUTPUT);
-    Serial.begin(9600);
-}
+MOV AL,15  
+CALL 40
 
-void loop() {
-    valor_LDR = analogRead(LDR);
+MOV AL,1  
+CALL 50
 
-    Serial.print("LDR: ");
-    Serial.println(valor_LDR);
+MOV AL,30 
+CALL 60
 
-    if (valor_LDR < 800) {
-        digitalWrite(ledPin1, HIGH);
-        digitalWrite(ledPin2, HIGH);
-        digitalWrite(ledPin3, HIGH);
-    } else if (valor_LDR < 900){
-        digitalWrite(ledPin1, HIGH);
-        digitalWrite(ledPin2, HIGH);
-        digitalWrite(ledPin3, LOW);
-    } else if (valor_LDR < 990) {
-        digitalWrite(ledPin1, HIGH);
-        digitalWrite(ledPin2, LOW);
-        digitalWrite(ledPin3, LOW);
-    } else {
-        digitalWrite(ledPin1, LOW);
-        digitalWrite(ledPin2, LOW);
-        digitalWrite(ledPin3, LOW);
-    }
+MOV AL,15  
+CALL 70
 
-    delay(100);
-}
+MOV AL,1  
+CALL 50
+
+JMP Start  
+
+ORG 30
+MOV AL, 84  ; vermelho e verde  
+OUT 01  
+RET  
+
+ORG 40
+MOV AL, 88  ; vermelho e amarelo  
+OUT 01  
+RET  
+
+ORG 50
+MOV AL, 90  ; vermelho e vermelho  
+OUT 01  
+RET  
+
+ORG 60
+MOV AL, 30  ; verde e vermelho  
+OUT 01  
+RET  
+
+ORG 70
+MOV AL, 50  ; amarelo e vermelho  
+OUT 01  
+RET  
+
+END
